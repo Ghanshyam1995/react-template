@@ -79,9 +79,9 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto text-center">
                             <li className="nav-item">
-                                <a className="nav-link  active" href="index.html">Home
+                                <Link className="nav-link  active" to="/">Home
           <span className="sr-only">(current)</span>
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item dropdown has-mega-menu" style={{ position: 'static' }}>
                                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Men's clothing</a>
