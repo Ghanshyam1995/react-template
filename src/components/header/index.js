@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -195,7 +194,7 @@ const Header = () => {
                                 <a className="nav-link" href="blog.html">Blog</a>
                             </li>
                             <li className="nav-item">
-                                
+
                                 <Link className="nav-link" to="/contactus">Contact</Link>
                             </li>
                         </ul>
@@ -205,6 +204,5 @@ const Header = () => {
         </header>
     )
 }
-
 
 export default Header;

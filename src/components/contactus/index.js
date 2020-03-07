@@ -2,9 +2,12 @@ import React from 'react'
 import InnerBanner from '../banner/innerBanner';
 import { validateAll } from 'indicative/validator';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
 import ContactusForm from './form';
+import { PostMessage } from "../../store/actions/actions";
 class ContactUs extends React.Component {
     constructor(props) {
+        console.log(props)
         super(props);
         this.state = {
             name: '',
@@ -44,6 +47,7 @@ class ContactUs extends React.Component {
                 this.setState({
                     formErrors: {}
                 });
+                this.props.PostMessage(data);
             })
             .catch(errors => {
                 var formattedErrors = {};
@@ -110,4 +114,5 @@ class ContactUs extends React.Component {
         )
     }
 }
-export default ContactUs;
+
+export default connect(null, { PostMessage })(ContactUs);

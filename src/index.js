@@ -7,7 +7,10 @@ import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import Header from './components/header';
 import Banner from './components/banner';
 import ContactUs from './components/contactus';
-
+import Footer from './components/footer';
+import NotFound from './components/notfound';
+import { Provider } from "react-redux";
+import store from './store';
 class StartUp extends Component {
     constructor(props) {
         super(props);
@@ -20,18 +23,19 @@ class StartUp extends Component {
                 <Header />
                 {location.pathname == '/' && <Banner />}
                 <Route exact path="/" component={App} />
-                <Route path="/contactus" component={ContactUs}/>
+                <Route path="/contactus" component={ContactUs} />
+                {/* <Route path="*" component={NotFound}/> */}
+                <Footer />
             </div>
         )
     }
 }
 
-
 const Main = withRouter((props) => {
     return (
-        <div>
+        <Provider store={store}>
             <StartUp {...props} />
-        </div>
+        </Provider>
     );
 })
 
