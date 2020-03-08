@@ -1,7 +1,8 @@
 import { SIGNUP, POST_MESSAGE } from "./types";
-const apiURL = 'http://localhost:8080';
+import { API_URL } from "../../config/consts";
+
 export const Signup = (postData) => dispatch => {
-    fetch(`${apiURL}/signip`, {
+    fetch(`${API_URL}/signip`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(postData)
@@ -12,7 +13,7 @@ export const Signup = (postData) => dispatch => {
 }
 
 export const PostMessage = (postData)=> dispatch =>{
-    fetch(`${apiURL}/postmessage`, {
+    fetch(`${API_URL}/postmessage`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(postData)

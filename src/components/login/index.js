@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import LoginForm from './loginform';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -32,6 +33,11 @@ class Login extends Component {
                         </div>
                         <div className="col-md-6">
                             <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} formErrors={this.state.error} />
+                            <p className="text-center mt-3">Not a member?
+                        <Link to="/signup" className="text-dark login_btn">
+                                    Signup Now</Link>
+                            </p>
+
                         </div>
                     </div>
                 </div>

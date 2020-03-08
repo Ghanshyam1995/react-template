@@ -1,6 +1,35 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import SignupForm from './signupform';
+import { API_URL } from '../../config/consts';
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      confirmpassword: '',
+      errors: {}
+    }
+  }
+
+  handleChange = (e) => {
+    [e.target.name] = e.target.value
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch(`${API_URL}/user/signup`, {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.email })
+    }).then(res => res.json()).then(res => console.log(res));
+  }
+
   render() {
     return (
       <div>
@@ -11,37 +40,11 @@ class Signup extends Component {
               <img src="images/p3.png" className="img-fluid" alt="login_image" />
             </div>
             <div className="col-md-6">
-              <form action="#" method="post">
-                <div className="form-group">
-                  <label htmlFor="recipient-name1" className="col-form-label">Your Name</label>
-                  <input type="text" className="form-control" placeholder=" " name="Name" id="recipient-name1" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="recipient-email" className="col-form-label">Email</label>
-                  <input type="email" className="form-control" placeholder=" " name="Email" id="recipient-email" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password1" className="col-form-label">Password</label>
-                  <input type="password" className="form-control" placeholder=" " name="Password" id="password1" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password2" className="col-form-label">Confirm Password</label>
-                  <input type="password" className="form-control" placeholder=" " name="Confirm Password" id="password2" required />
-                </div>
-                <div className="sub-w3l">
-                  <div className="sub-agile">
-                    <input type="checkbox" id="brand2" defaultValue />
-                    <label htmlFor="brand2" className="mb-3">
-                      <span />I Accept to the Terms &amp; Conditions</label>
-                  </div>
-                </div>
-                <div className="right-w3l">
-                  <input type="submit" className="form-control" defaultValue="Register" />
-                </div>
-              </form>
-              <p className="text-center mt-3">Already a member? 
-                        <a href="#" data-toggle="modal" data-target="#exampleModal1" className="text-dark login_btn">
-                   Login Now</a>
+              <SignupForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} errors={this.state.errors} />
+              <p className="text-center mt-3">Already a member?
+                        <Link to="/login" className="text-dark login_btn">
+                  Login Now
+                  </Link>
               </p>
             </div>
           </div>
