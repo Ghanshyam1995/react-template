@@ -49,9 +49,9 @@ const Header = () => {
                         {/* search form */}
                         <div className="nav-icon d-flex">
                             {/* sigin and sign up */}
-                            <a className="text-dark login_btn align-self-center mx-3" href="#myModal_btn" data-toggle="modal" data-target="#myModal_btn">
+                            <Link className="text-dark login_btn align-self-center mx-3" to="/login" data-target="#myModal_btn">
                                 <i className="far fa-user" />
-                            </a>
+                            </Link>
                             {/* sigin and sign up */}
                             {/* shopping cart */}
                             <div className="cart-mainf">

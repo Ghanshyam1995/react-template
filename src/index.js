@@ -11,6 +11,8 @@ import Footer from './components/footer';
 import NotFound from './components/notfound';
 import { Provider } from "react-redux";
 import store from './store';
+import Signup from "./components/signup";
+import Login from './components/login';
 class StartUp extends Component {
     constructor(props) {
         super(props);
@@ -20,12 +22,15 @@ class StartUp extends Component {
         const { location } = this.props;
         return (
             <div>
-                <Header />
+                {location.pathname != '/login' && location.pathname != '/signup' && <Header />}
                 {location.pathname == '/' && <Banner />}
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
                 <Route exact path="/" component={App} />
                 <Route path="/contactus" component={ContactUs} />
                 {/* <Route path="*" component={NotFound}/> */}
-                <Footer />
+                {location.pathname != '/login' && location.pathname != '/signup' && <Footer />}
+
             </div>
         )
     }
