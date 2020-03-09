@@ -15,8 +15,9 @@ app.get('/', function (req, res) {
 });
 
 
+app.use('/user', userRoute);
+
 app.get("/saveuser", function (req, res) {
-  var data = req.body;
   db.initialize('Users', function (dbCollection) {
     dbCollection.find().toArray(function (err, result) {
       if (err) throw err;
@@ -49,6 +50,5 @@ app.get('/getallmessages', function (req, res) {
     throw (err);
   });
 })
-app.use('/user', userRoute);
 
 app.listen(process.env.PORT || 8080);

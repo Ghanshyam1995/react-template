@@ -7,7 +7,6 @@ import ContactusForm from './form';
 import { PostMessage } from "../../store/actions/actions";
 class ContactUs extends React.Component {
     constructor(props) {
-        console.log(props)
         super(props);
         this.state = {
             name: '',

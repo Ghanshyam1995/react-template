@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SignupForm from './signupform';
 import { API_URL } from '../../config/consts';
+import validateForm from '../../helpers/validation';
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -15,19 +16,38 @@ class Signup extends Component {
   }
 
   handleChange = (e) => {
-    [e.target.name] = e.target.value
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      name: this.state.name, email: this.state.email, password: this.state.email, confirmpassword:
+        this.state.confirmpassword
+    };
 
-    fetch(`${API_URL}/user/signup`, {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.email })
-    }).then(res => res.json()).then(res => console.log(res));
+    const rules = {
+      name: 'required',
+      email: 'required|email',
+      password: 'required',
+      confirmpassword: 'required'
+    }
+
+
+    await validateForm(data, rules).then(data => {
+      fetch(`${API_URL}/user/signup`, {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.email })
+      }).then(res => res.json()).then(res => console.log(res));
+    }).catch(errs => this.setState({
+      errors: errs
+    }));
   }
 
   render() {
