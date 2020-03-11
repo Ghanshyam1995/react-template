@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import LoginForm from './loginform';
 import { Link } from 'react-router-dom';
+import validateForm from '../../helpers/validation';
 
 class Login extends Component {
     constructor(props) {
@@ -18,8 +19,17 @@ class Login extends Component {
         })
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+        var data = Object.assign({}, this.state);
+        delete data.error; // Remove prop error from data
+        await validateForm(data).then(data => {
+            this.setState({
+                error: {}
+            })
+        }).catch(errs => this.setState({
+            error: errs
+        }));
     }
 
     render() {
