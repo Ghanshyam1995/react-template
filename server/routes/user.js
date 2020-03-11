@@ -12,6 +12,15 @@ router.post('/signup', function (req, res, next) {
         throw (err);
     });
     next();
+});
+
+router.post('/login', (req, res) => {
+    db.initialize('Users', (dbColection) => {
+        dbColection.findOne({ email: req.body.email, password: req.body.password }, (err, result) => {
+            if (err) return res.send(null);
+            return res.send(result);
+        })
+    });
 })
 
 

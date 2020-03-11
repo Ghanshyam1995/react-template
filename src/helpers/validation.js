@@ -8,7 +8,7 @@ const messages = {
 
 const initialRules = {
     email: 'required|email',
-    password: 'required',
+    password: 'required:min:8',
 }
 
 const validateForm = async (data, rules = initialRules) => {

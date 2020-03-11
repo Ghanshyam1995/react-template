@@ -1,4 +1,4 @@
-import { SIGNUP, POST_MESSAGE } from "./types";
+import { SIGNUP, POST_MESSAGE, LOGIN_USER } from "./types";
 import { API_URL } from "../../config/consts";
 
 export const Signup = (postData) => dispatch => {
@@ -21,4 +21,11 @@ export const PostMessage = (postData)=> dispatch =>{
         type: POST_MESSAGE,
         payload: data
     }))
+}
+
+export const SaveUserData = (userData) => dispatch=>{
+    dispatch({
+        type: LOGIN_USER,
+        payload : userData
+    })
 }

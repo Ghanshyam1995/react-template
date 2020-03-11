@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LoginForm from './loginform';
 import { Link } from 'react-router-dom';
 import validateForm from '../../helpers/validation';
+import { API_URL } from '../../config/consts';
 
 class Login extends Component {
     constructor(props) {
@@ -26,6 +27,16 @@ class Login extends Component {
         await validateForm(data).then(data => {
             this.setState({
                 error: {}
+            });
+
+            fetch(`${API_URL}/user/login`, {
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(this.state),
+                method: 'POST'
+            }).then(res => res.json()).then(data => {
+                console.log(data);
+            }).catch(err => {
+                console.log(err);
             })
         }).catch(errs => this.setState({
             error: errs
