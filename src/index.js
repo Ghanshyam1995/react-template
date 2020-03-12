@@ -9,7 +9,7 @@ import Banner from './components/banner';
 import ContactUs from './components/contactus';
 import Footer from './components/footer';
 import NotFound from './components/notfound';
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import store from './store';
 import Signup from "./components/signup";
 import Login from './components/login';
@@ -34,6 +34,10 @@ class StartUp extends Component {
             </div>
         )
     }
+}
+
+const mapPropWithStatate = state => {
+
 }
 
 const Main = withRouter((props) => {

@@ -3,6 +3,8 @@ import LoginForm from './loginform';
 import { Link } from 'react-router-dom';
 import validateForm from '../../helpers/validation';
 import { API_URL } from '../../config/consts';
+import { connect } from 'react-redux';
+import { SaveUserData } from '../../store/actions/actions';
 
 class Login extends Component {
     constructor(props) {
@@ -34,9 +36,13 @@ class Login extends Component {
                 body: JSON.stringify(this.state),
                 method: 'POST'
             }).then(res => res.json()).then(data => {
-                console.log(data);
+                if (data !== null) {
+                    this.props.SaveUserData(data);
+                    this.props.history.push('/');
+                }
+
             }).catch(err => {
-                console.log(err);
+                alert(err);
             })
         }).catch(errs => this.setState({
             error: errs
@@ -67,4 +73,5 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+export default connect(null, { SaveUserData })(Login);
